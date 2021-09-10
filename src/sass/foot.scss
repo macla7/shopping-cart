@@ -1,0 +1,11 @@
+footer {
+  height: 3vh;
+  background: rgb(0, 40, 40);
+  color: white;
+  display: grid;
+  align-items: center;
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
