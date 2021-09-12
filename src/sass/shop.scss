@@ -1,0 +1,16 @@
+.shopItemCont {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 350px);
+}
+
+.shopItem {
+  border: 2px solid rgb(0, 40, 40);
+  border-radius: 5px;
+  padding: 0.3rem;
+  margin: 0.5rem;
+  img {
+    height: 200px;
+    aspect-ratio: 1;
+  }
+}
