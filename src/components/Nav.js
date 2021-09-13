@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function Nav({ cartItems }) {
   function totalCartItems(items) {
-    console.log(items, "navy");
     if (items) {
       return Object.values(items).reduce((a, b) => a + b, 0);
     }
@@ -13,7 +12,6 @@ function Nav({ cartItems }) {
 
   useEffect(() => {
     setCartTotal(totalCartItems(cartItems));
-    console.log(setCartTotal(totalCartItems(cartItems)));
     document.querySelector(".cartTot").innerHTML = cartTotal;
   }, [cartItems, cartTotal]);
 

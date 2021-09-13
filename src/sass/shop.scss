@@ -1,3 +1,20 @@
+.shop {
+  min-height: 92vh;
+}
+
+.shopHeader {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 0.5rem;
+  grid-gap: 0.2rem;
+
+  p {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .shopItemCont {
   display: grid;
   justify-content: center;
@@ -6,11 +23,39 @@
 
 .shopItem {
   border: 2px solid rgb(0, 40, 40);
-  border-radius: 5px;
+  background-color: white;
+  border-radius: 10px;
   padding: 0.3rem;
   margin: 0.5rem;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-end;
+  justify-items: center;
   img {
     height: 200px;
     aspect-ratio: 1;
+  }
+
+  input[type="number"] {
+    width: 60px;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    > * {
+      margin: 0.2rem;
+    }
+
+    input[type="submit"] {
+      grid-column: 1 /4;
+    }
   }
 }

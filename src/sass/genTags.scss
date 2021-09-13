@@ -2,10 +2,21 @@
   box-sizing: border-box;
 }
 
+h2 {
+  font-size: 1.5rem;
+}
+
 h3 {
   font-size: 1.3rem;
 }
 
 body {
   font-family: "OpenSansReg";
+  background-color: rgb(240, 240, 240);
+}
+
+abbr[title] {
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
 }
