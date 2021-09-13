@@ -11,21 +11,44 @@ import {
   faPlusCircle,
   faMinusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import CartItemsContext from "./components/CartItemsContext";
+import ShopItem from "./components/ShopItem";
+import ducks from "./ducks";
+import uniqid from "uniqid";
 
 function App() {
   const [cartItems, setCartItems] = useState({});
 
   library.add(faTimesCircle, faPlusCircle, faMinusCircle);
+
+  const shopItems = ducks.map((duck) => (
+    <ShopItem duck={duck} handleAdd={handleAdd} key={uniqid()} />
+  ));
+
+  function handleAdd(duck, add) {
+    if (cartItems[duck.id]) {
+      const boi = { [duck.id]: cartItems[duck.id] + add };
+      setCartItems({ ...cartItems, ...boi });
+    } else {
+      const bek = { [duck.id]: add };
+      setCartItems({ ...cartItems, ...bek });
+    }
+    console.log(cartItems, "in app func");
+  }
+
   return (
     <div className="App">
-      <CartItemsContext.Provider value={{ cartItems, setCartItems }}>
-        <Nav />
-        <Route path="/" exact component={Home} />
-        <Route path="/shop" component={Shop} />
-        <Route path="/cart" component={Cart} />
-        <Foot />
-      </CartItemsContext.Provider>
+      {console.log(cartItems, "in render of app")}
+      <Nav cartItems={cartItems} />
+      <Route path="/" exact>
+        <Home />
+      </Route>
+      <Route path="/shop">
+        <Shop>{shopItems}</Shop>
+      </Route>
+      <Route path="/cart">
+        <Cart />
+      </Route>
+      <Foot />
     </div>
   );
 }

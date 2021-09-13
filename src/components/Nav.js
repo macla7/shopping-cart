@@ -1,20 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CartItemsContext from "./CartItemsContext";
 
-function Nav() {
-  const cart = useContext(CartItemsContext);
-
+function Nav({ cartItems }) {
   function totalCartItems(items) {
-    console.log(items);
-    if (items !== {}) {
-      return Object.values(items).reduce((a, b) => a + b);
+    console.log(items, "navy");
+    if (items) {
+      return Object.values(items).reduce((a, b) => a + b, 0);
     }
   }
 
+  const [cartTotal, setCartTotal] = useState(totalCartItems(cartItems));
+
   useEffect(() => {
-    totalCartItems(cart.cartItems);
-  }, [cart.cartItems]);
+    setCartTotal(totalCartItems(cartItems));
+    console.log(setCartTotal(totalCartItems(cartItems)));
+    document.querySelector(".cartTot").innerHTML = cartTotal;
+  }, [cartItems, cartTotal]);
+
   return (
     <nav className="nav">
       <div className="navLinks">
@@ -29,7 +31,7 @@ function Nav() {
         <Link to="/cart">
           <img src="./images/cart.png" alt="cart" />
         </Link>
-        <div>1 -</div>
+        <div className="cartTot">{cartTotal}</div>
       </div>
     </nav>
   );

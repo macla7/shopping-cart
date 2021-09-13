@@ -32,4 +32,16 @@ nav {
   a:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
+
+  .cart {
+    position: relative;
+  }
+
+  .cartTot {
+    font-size: 1.5rem;
+    color: white;
+    position: absolute;
+    left: 10px;
+    top: 13px;
+  }
 }

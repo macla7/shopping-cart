@@ -1,16 +1,10 @@
 import React from "react";
-import ducks from "../ducks";
-import ShopItem from "./ShopItem";
-import uniqid from "uniqid";
 
-function Shop() {
-  const shopItems = ducks.map((duck) => (
-    <ShopItem duck={duck} key={uniqid()} />
-  ));
+function Shop({ children }) {
   return (
     <div>
-      <div>Shop</div>
-      <div className="shopItemCont">{shopItems}</div>
+      <h2>Welcome to our Shop!</h2>
+      <div className="shopItemCont">{children}</div>
     </div>
   );
 }

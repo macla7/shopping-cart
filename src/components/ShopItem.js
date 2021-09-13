@@ -1,29 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CartItemsContext from "./CartItemsContext";
 
-function ShopItem({ duck }) {
-  const cart = useContext(CartItemsContext);
-  console.log(cart);
-
+function ShopItem({ duck, handleAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
     const add = parseInt(e.target.firstChild.value);
-    console.log(add);
-    if (cart.cartItems[duck.id]) {
-      cart.setCartItems(
-        Object.assign(cart.cartItems, {
-          [duck.id]: cart.cartItems[duck.id] + add,
-        })
-      );
-    } else {
-      cart.setCartItems(
-        Object.assign(cart.cartItems, {
-          [duck.id]: add,
-        })
-      );
-    }
-    console.log(cart.cartItems);
+    handleAdd(duck, add);
   }
 
   return (
