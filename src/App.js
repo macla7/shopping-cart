@@ -14,6 +14,7 @@ import {
 import ShopItem from "./components/ShopItem";
 import ducks from "./ducks";
 import uniqid from "uniqid";
+import CartTile from "./components/CartTile";
 
 function App() {
   const [cartItems, setCartItems] = useState({});
@@ -24,19 +25,43 @@ function App() {
     <ShopItem duck={duck} handleAdd={handleAdd} key={uniqid()} />
   ));
 
+  const cartTileArr = [];
+  for (const id in cartItems) {
+    cartTileArr.push(
+      <CartTile
+        id={id}
+        num={cartItems[id]}
+        key={uniqid()}
+        changeCart={handleChange}
+        onRemove={handleDel}
+      />
+    );
+  }
+
+  function handleChange(duckID, add) {
+    const bek = { [duckID]: add };
+    setCartItems({ ...cartItems, ...bek });
+  }
+
   function handleAdd(duck, add) {
     if (cartItems[duck.id]) {
       const boi = { [duck.id]: cartItems[duck.id] + add };
       setCartItems({ ...cartItems, ...boi });
     } else {
-      const bek = { [duck.id]: add };
-      setCartItems({ ...cartItems, ...bek });
+      handleChange([duck.id], add);
     }
     console.log(cartItems, "in app func");
   }
 
+  function handleDel(duck) {
+    const cart = cartItems;
+    delete cart[duck];
+    setCartItems({ ...cart });
+    console.log(cartItems);
+  }
+
   return (
-    <div className="App">
+    <div className="app">
       {console.log(cartItems, "in render of app")}
       <Nav cartItems={cartItems} />
       <Route path="/" exact>
@@ -46,7 +71,7 @@ function App() {
         <Shop>{shopItems}</Shop>
       </Route>
       <Route path="/cart">
-        <Cart />
+        <Cart>{cartTileArr}</Cart>
       </Route>
       <Foot />
     </div>

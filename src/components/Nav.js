@@ -25,11 +25,11 @@ function Nav({ cartItems }) {
           <Link to="/shop">Shop</Link>
         </div>
       </div>
-      <div className="cart">
-        <Link to="/cart">
+      <div>
+        <Link to="/cart" className="cartLink">
+          <div className="cartTot">{cartTotal}</div>
           <img src="./images/cart.png" alt="cart" />
         </Link>
-        <div className="cartTot">{cartTotal}</div>
       </div>
     </nav>
   );
