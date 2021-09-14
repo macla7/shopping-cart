@@ -1,0 +1,27 @@
+.boughtScreen {
+  max-width: 500px;
+  border: 2px solid rgb(0, 40, 40);
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 3rem;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    padding: 0.5rem 0;
+  }
+}
+
+.socials {
+  display: flex;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+
+  > * {
+    margin: 0.5rem;
+  }
+}

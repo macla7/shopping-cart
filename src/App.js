@@ -10,16 +10,32 @@ import {
   faTimesCircle,
   faPlusCircle,
   faMinusCircle,
+  faTrash,
+  // faFacebookSquare,
+  // faInstagramSquare,
+  // faTwitterSquare,
 } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import ShopItem from "./components/ShopItem";
 import ducks from "./ducks";
 import uniqid from "uniqid";
 import CartTile from "./components/CartTile";
+import Bought from "./components/Bought";
+import { isEmpty } from "lodash";
 
 function App() {
   const [cartItems, setCartItems] = useState({});
 
-  library.add(faTimesCircle, faPlusCircle, faMinusCircle);
+  library.add(
+    faTimesCircle,
+    faPlusCircle,
+    faMinusCircle,
+    faTrash,
+    fab
+    // faFacebookSquare,
+    // faInstagramSquare,
+    // faTwitterSquare
+  );
 
   const shopItems = ducks.map((duck) => (
     <ShopItem duck={duck} handleAdd={handleAdd} key={uniqid()} />
@@ -60,6 +76,26 @@ function App() {
     console.log(cartItems);
   }
 
+  function cartTotal() {
+    let total = 0;
+    for (const id in cartItems) {
+      total += ducks[id].price * cartItems[id];
+    }
+    return total;
+  }
+
+  function clearCart() {
+    if (isEmpty(cartItems)) {
+      alert(
+        "You have to have some ducks in your cart before you can purchase them!"
+      );
+      console.log("beeep");
+    } else {
+      console.log(cartItems, "cart items are...");
+      setCartItems({});
+    }
+  }
+
   return (
     <div className="app">
       {console.log(cartItems, "in render of app")}
@@ -71,8 +107,14 @@ function App() {
         <Shop>{shopItems}</Shop>
       </Route>
       <Route path="/cart">
-        <Cart>{cartTileArr}</Cart>
+        <Cart total={cartTotal()} clearCart={clearCart}>
+          {cartTileArr}
+        </Cart>
       </Route>
+      <Route path="/bought">
+        <Bought />
+      </Route>
+
       <Foot />
     </div>
   );

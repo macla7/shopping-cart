@@ -24,3 +24,13 @@ abbr[title] {
 .app {
   position: relative;
 }
+
+input[type="submit"] {
+  background-color: rgba(255, 145, 0, 0.9);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}

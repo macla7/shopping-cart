@@ -13,23 +13,41 @@ function CartTile({ id, num, changeCart, onRemove }) {
     onRemove(id);
   }
 
+  function handleMinus(e) {
+    let element = e.target.closest("div").querySelector(".number");
+    let val = parseInt(element.value);
+    if (val === 1) {
+      handleClick();
+    } else {
+      val = parseInt(val) - 1;
+      changeCart(id, val);
+    }
+  }
+
+  function handlePlus(e) {
+    let element = e.target.closest("div").querySelector(".number");
+    changeCart(id, parseInt(element.value) + 1);
+  }
+
   return (
     <div className="cartTile">
-      <p>
-        {id} : {num}
-      </p>
       <img src={ducks[id].url} alt={ducks[id].title} />
-      <FontAwesomeIcon icon="minus-circle" />
-      <input
-        type="number"
-        name="number"
-        min="1"
-        className="number"
-        value={num}
-        onChange={handleChange}
-      />
-      <FontAwesomeIcon icon="plus-circle" />
-      <button onClick={handleClick}>Remove from Cart</button>
+      <div className="cartItemBtns">
+        <FontAwesomeIcon icon="minus-circle" onClick={handleMinus} />
+        <input
+          type="number"
+          name="number"
+          min="1"
+          className="number"
+          value={num}
+          onChange={handleChange}
+        />
+        <FontAwesomeIcon icon="plus-circle" onClick={handlePlus} />
+        <FontAwesomeIcon icon="trash" onClick={handleClick} className="trash" />
+      </div>
+      <div>
+        <p>${ducks[id].price * num}</p>
+      </div>
     </div>
   );
 }
