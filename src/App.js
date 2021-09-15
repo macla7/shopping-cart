@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from "./components/Nav";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import Cart from "./components/Cart";
@@ -99,23 +99,27 @@ function App() {
   return (
     <div className="app">
       {console.log(cartItems, "in render of app")}
-      <Nav cartItems={cartItems} />
-      <Route path="/" exact>
-        <Home />
-      </Route>
-      <Route path="/shop">
-        <Shop>{shopItems}</Shop>
-      </Route>
-      <Route path="/cart">
-        <Cart total={cartTotal()} clearCart={clearCart}>
-          {cartTileArr}
-        </Cart>
-      </Route>
-      <Route path="/bought">
-        <Bought />
-      </Route>
+      <BrowserRouter>
+        <Nav cartItems={cartItems} />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/shop">
+            <Shop>{shopItems}</Shop>
+          </Route>
+          <Route path="/cart">
+            <Cart total={cartTotal()} clearCart={clearCart}>
+              {cartTileArr}
+            </Cart>
+          </Route>
+          <Route path="/bought">
+            <Bought />
+          </Route>
 
-      <Foot />
+          <Foot />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
