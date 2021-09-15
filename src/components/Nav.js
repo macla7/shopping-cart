@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import cartImg from "../assets/cart.png";
 
 function Nav({ cartItems }) {
   function totalCartItems(items) {
@@ -28,7 +29,7 @@ function Nav({ cartItems }) {
       <div>
         <Link to="/cart" className="cartLink">
           <div className="cartTot">{cartTotal}</div>
-          <img src="./images/cart.png" alt="cart" />
+          <img src={cartImg} alt="cart" />
         </Link>
       </div>
     </nav>
