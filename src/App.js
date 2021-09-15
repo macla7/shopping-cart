@@ -116,9 +116,8 @@ function App() {
           <Route path="/bought">
             <Bought />
           </Route>
-
-          <Foot />
         </Switch>
+        <Foot />
       </BrowserRouter>
     </div>
   );
