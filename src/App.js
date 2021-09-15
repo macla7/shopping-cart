@@ -105,6 +105,9 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
+          <Route path="shopping-cart">
+            <Home />
+          </Route>
           <Route path="/shop">
             <Shop>{shopItems}</Shop>
           </Route>
